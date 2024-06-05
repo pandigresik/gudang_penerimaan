@@ -6,11 +6,10 @@ return array (
   'fields' => 
   array (
     'id' => 'Id',
-    'code' => 'Code',
-    'name' => 'Name',
-    'description' => 'Description',
-    'product_category_id' => 'Product Category Id',
-    'uom_id' => 'Uom Id',
-    'file_upload' => 'Image',
+    'code' => 'Kode',
+    'name' => 'Nama',
+    'description' => 'Deskripsi',
+    'product_category_id' => 'Kategori Produk',
+    'image' => 'Gambar',
   ),
 );

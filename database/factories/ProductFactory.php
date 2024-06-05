@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories\Inventory;
+namespace Database\Factories\Base;
 
-use App\Models\Inventory\Product;
+use App\Models\Base\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -26,7 +26,7 @@ class ProductFactory extends Factory
         'name' => $this->faker->text($this->faker->numberBetween(5, 50)),
         'description' => $this->faker->boolean,
         'product_category_id' => $this->faker->word,
-        'uom_id' => $this->faker->word
+        'image' => $this->faker->text($this->faker->numberBetween(5, 255))
         ];
     }
 }

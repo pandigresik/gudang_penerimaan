@@ -31,38 +31,8 @@ class MenusTableSeeder extends Seeder
                 'seq_number' => 1,
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:54',
-            ),
+            ),                 
             1 => 
-            array (
-                '_lft' => 41,
-                '_rgt' => 58,
-                'created_at' => '2021-08-09 08:10:07',
-                'description' => 'Header menu accounting',
-                'icon' => 'cil-address-book',
-                'id' => 2,
-                'name' => 'Accounting',
-                'parent_id' => NULL,
-                'route' => NULL,
-                'seq_number' => 2,
-                'status' => '1',
-                'updated_at' => '2021-10-29 14:51:57',
-            ),
-            2 => 
-            array (
-                '_lft' => 59,
-                '_rgt' => 74,
-                'created_at' => '2021-08-09 08:10:07',
-                'description' => 'Header menu inventory',
-                'icon' => 'cil-address-book',
-                'id' => 3,
-                'name' => 'Inventory',
-                'parent_id' => NULL,
-                'route' => NULL,
-                'seq_number' => 3,
-                'status' => '1',
-                'updated_at' => '2021-10-29 14:51:59',
-            ),
-            3 => 
             array (
                 '_lft' => 32,
                 '_rgt' => 33,
@@ -77,7 +47,7 @@ class MenusTableSeeder extends Seeder
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:53',
             ),
-            4 => 
+            2 => 
             array (
                 '_lft' => 34,
                 '_rgt' => 35,
@@ -92,7 +62,7 @@ class MenusTableSeeder extends Seeder
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:54',
             ),
-            5 => 
+            3 => 
             array (
                 '_lft' => 36,
                 '_rgt' => 37,
@@ -107,7 +77,7 @@ class MenusTableSeeder extends Seeder
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:54',
             ),
-            6 => 
+            4 => 
             array (
                 '_lft' => 38,
                 '_rgt' => 39,
@@ -122,8 +92,6 @@ class MenusTableSeeder extends Seeder
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:54',
             )            
-        ));
-        
-        
+        ));                
     }
 }

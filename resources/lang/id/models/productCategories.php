@@ -1,13 +1,13 @@
 <?php
 
 return array (
-  'singular' => 'ProductCategory',
-  'plural' => 'ProductCategories',
+  'singular' => 'Kategori Barang',
+  'plural' => 'kategori Barang',
   'fields' => 
   array (
     'id' => 'Id',
-    'code' => 'Code',
-    'name' => 'Name',
-    'description' => 'Description',
+    'code' => 'Kode',
+    'name' => 'Nama',
+    'description' => 'Deskripsi',
   ),
 );

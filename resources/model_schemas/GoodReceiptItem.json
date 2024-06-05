@@ -1,0 +1,54 @@
+[
+    {
+        "name": "id",
+        "dbType": "bigInteger,true,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "name": "good_receipt_id",
+        "dbType": "bigInteger,false,true",
+        "htmlType": null,
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "product_id",
+        "dbType": "bigInteger,false,true",
+        "htmlType": null,
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,GoodReceipt,good_receipt_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Product,product_id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,GoodReceiptItemClassification,good_receipt_item_id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,GoodReceiptItemWeight,good_receipt_item_id"
+    }
+]

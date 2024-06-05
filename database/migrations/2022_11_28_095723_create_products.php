@@ -12,20 +12,19 @@ class CreateProducts extends Migration
      * @return void
      */
     public function up()
-    {
+    {        
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 10)->unique();
+            $table->string('code', 10)->nullable()->comment('internal code from company, maybe existing code in other application');
             $table->string('name', 50);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('product_category_id');
-            $table->unsignedBigInteger('uom_id');
+            $table->unsignedBigInteger('product_category_id');            
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->blameable();
-            
-            $table->foreign('uom_id')->references('id')->on('uoms')->delete('cascade');
-            $table->foreign('product_category_id')->references('id')->on('product_categories')->delete('cascade');
+                        
+            $table->foreign('product_category_id')->references('id')->on('product_categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

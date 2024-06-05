@@ -32,15 +32,6 @@
     </div>
 </div>
 
-<!-- List Warehouse Field -->
-<div class="form-group row mb-3">
-    {!! Form::label('warehouse', 'Warehouse:', ['class' => 'col-md-3 col-form-label']) !!}
-    <div class="col-9">
-    @include('base.users.warehouse_fields')
-    </div>
-</div>
-
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12 mt-2">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

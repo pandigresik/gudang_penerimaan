@@ -1,7 +1,7 @@
 <?php namespace Tests\Repositories;
 
-use App\Models\Inventory\Product;
-use App\Repositories\Inventory\ProductRepository;
+use App\Models\Base\Product;
+use App\Repositories\Base\ProductRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;

@@ -6,7 +6,6 @@ use App\DataTables\Base\UserDataTable;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\Base\CreateUserRequest;
 use App\Http\Requests\Base\UpdateUserRequest;
-use App\Models\Inventory\Warehouse;
 use App\Repositories\Base\RoleRepository;
 use App\Repositories\Base\UserRepository;
 use Flash;
@@ -161,8 +160,6 @@ class UserController extends AppBaseController
      */
     private function getOptionItems()
     {
-        return [
-            'warehouses' => Warehouse::get()
-        ];
+        return [];
     }
 }

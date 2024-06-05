@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
-use App\Models\Inventory\Product;
+use App\Models\Base\Product;
 
 class ProductApiTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ProductApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/inventory/products', $product
+            '/api/base/products', $product
         );
 
         $this->assertApiResponse($product);
@@ -34,7 +34,7 @@ class ProductApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/inventory/products/'.$product->id
+            '/api/base/products/'.$product->id
         );
 
         $this->assertApiResponse($product->toArray());
@@ -50,7 +50,7 @@ class ProductApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/inventory/products/'.$product->id,
+            '/api/base/products/'.$product->id,
             $editedProduct
         );
 
@@ -66,13 +66,13 @@ class ProductApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/inventory/products/'.$product->id
+             '/api/base/products/'.$product->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/inventory/products/'.$product->id
+            '/api/base/products/'.$product->id
         );
 
         $this->response->assertStatus(404);

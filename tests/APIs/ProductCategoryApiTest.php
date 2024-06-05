@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
-use App\Models\Inventory\ProductCategory;
+use App\Models\Base\ProductCategory;
 
 class ProductCategoryApiTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ProductCategoryApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/inventory/product_categories', $productCategory
+            '/api/base/product_categories', $productCategory
         );
 
         $this->assertApiResponse($productCategory);
@@ -34,7 +34,7 @@ class ProductCategoryApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/inventory/product_categories/'.$productCategory->id
+            '/api/base/product_categories/'.$productCategory->id
         );
 
         $this->assertApiResponse($productCategory->toArray());
@@ -50,7 +50,7 @@ class ProductCategoryApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/inventory/product_categories/'.$productCategory->id,
+            '/api/base/product_categories/'.$productCategory->id,
             $editedProductCategory
         );
 
@@ -66,13 +66,13 @@ class ProductCategoryApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/inventory/product_categories/'.$productCategory->id
+             '/api/base/product_categories/'.$productCategory->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/inventory/product_categories/'.$productCategory->id
+            '/api/base/product_categories/'.$productCategory->id
         );
 
         $this->response->assertStatus(404);

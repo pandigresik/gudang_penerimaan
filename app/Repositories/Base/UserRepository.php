@@ -3,7 +3,6 @@
 namespace App\Repositories\Base;
 
 use App\Models\Base\User;
-use App\Models\Inventory\UserWarehouse;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,11 +51,8 @@ class UserRepository extends BaseRepository
     {
         $input['password'] = Hash::make($input['password']);
         $model = parent::create($input);
-        $roles = $input['roles'] ?? [];
-        $warehouses = $input['warehouses'] ?? [];
-        $model->syncRoles($roles);
-        $model->warehouses()->sync($warehouses);
-        (new UserWarehouse)->flushCache();
+        $roles = $input['roles'] ?? [];        
+        $model->syncRoles($roles);        
         return $model;
     }
 
@@ -71,11 +67,8 @@ class UserRepository extends BaseRepository
     public function update($input, $id)
     {
         $model = parent::update($input, $id);
-        $roles = $input['roles'] ?? [];
-        $warehouses = $input['warehouses'] ?? [];
-        $model->syncRoles($roles);
-        $model->warehouses()->sync($warehouses);
-        (new UserWarehouse)->flushCache();
+        $roles = $input['roles'] ?? [];        
+        $model->syncRoles($roles);        
         return $model;
     }
 }
