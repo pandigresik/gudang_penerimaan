@@ -4,6 +4,7 @@ namespace App\Repositories\Warehouse;
 
 use App\Models\Warehouse\GoodReceiptItem;
 use App\Models\Warehouse\GoodReceiptItemClassification;
+use App\Models\Warehouse\GoodReceiptItemWeight;
 use App\Repositories\BaseRepository;
 use Exception;
 
@@ -82,6 +83,7 @@ class GoodReceiptItemClassificationRepository extends BaseRepository
             }
             // clear cache untuk good receipt
             (new GoodReceiptItem)->flushCache();
+            (new GoodReceiptItemWeight)->flushCache();
             $connection->commit();
             return $this->model;
         } catch (Exception $e) {

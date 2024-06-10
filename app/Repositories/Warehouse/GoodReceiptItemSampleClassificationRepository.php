@@ -40,6 +40,7 @@ class GoodReceiptItemSampleClassificationRepository extends GoodReceiptItemClass
             }            
             // clear cache untuk good receipt
             (new GoodReceipt)->flushCache();
+            (new GoodReceiptItemWeight)->flushCache();
             $connection->commit();
             return $this->model;
         } catch (Exception $e) {
