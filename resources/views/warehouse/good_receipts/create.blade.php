@@ -4,7 +4,10 @@
     @push('breadcrumb')
     <ol class="breadcrumb  my-0 ms-2">
       <li class="breadcrumb-item">
+        <!-- 
          <a href="{!! route('warehouse.goodReceipts.index') !!}">@lang('models/goodReceipts.singular')</a>
+         -->
+         <a href="#">@lang('models/goodReceipts.singular')</a>
       </li>
       <li class="breadcrumb-item active">@lang('crud.add_new')</li>
     </ol>
