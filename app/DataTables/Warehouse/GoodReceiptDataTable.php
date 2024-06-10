@@ -21,6 +21,7 @@ class GoodReceiptDataTable extends DataTable
     */
     private $columnFilterOperator = [
         'partner_id' => \App\DataTables\FilterClass\MatchKeyword::class,
+        'receipt_date' => \App\DataTables\FilterClass\BetweenKeyword::class,
     ];
     
     private $mapColumnSearch = [
