@@ -67,7 +67,7 @@ class GoodReceiptItemWeightRepository extends BaseRepository
     {        
         $query = $this->allQuery($search, $skip, $limit);
         $query->where(['is_sampling' => true, 'state' => 'classification'])->with(['goodReceiptItem' => static fn($p) => $p->with(['goodReceiptItemSampleClassifications', 'product', 'goodReceipt' => static fn($q) => $q->with(['partner'])])]);
-        return $query->get()->mapWithKeys(function($item){    
+        return $query->get()->filter(static fn($q) => $q->goodReceiptItem->goodReceipt )->mapWithKeys(function($item){            
             $sudahTimbang = $item->goodReceiptItem->goodReceiptItemSampleClassifications->where('reference', $item->id)->sum('weight');            
             $sisaTimbang = $item->weight - $sudahTimbang;
             return [$item->id => $item->goodReceiptItem->goodReceipt->partner->name.' - '.$item->goodReceiptItem->product->name.' - '.$item->goodReceiptItem->goodReceipt->sample.' - '.localFormatDate($item->goodReceiptItem->goodReceipt->receipt_date).' - ( '.$item->quantity.' Colly / '.$item->weight.' Kg ) - ( Sisa '.$sisaTimbang.' Kg)'];
@@ -78,7 +78,7 @@ class GoodReceiptItemWeightRepository extends BaseRepository
     {        
         $query = $this->allQuery($search, $skip, $limit);
         $query->where(['is_sampling' => false, 'state' => 'classification'])->with(['goodReceiptItem' => static fn($p) => $p->with(['goodReceiptItemNonSampleClassifications', 'product', 'goodReceipt' => static fn($q) => $q->with(['partner'])])]);
-        return $query->get()->groupBy('good_receipt_item_id')->map(function($item){
+        return $query->get()->groupBy('good_receipt_item_id')->filter(static fn($q) => $q->first()->goodReceiptItem->goodReceipt )->map(function($item){
             $sudahTimbang = $item->first()->goodReceiptItem->goodReceiptItemNonSampleClassifications->sum('weight');
             $sisaTimbang = $item->sum('weight') - $sudahTimbang;
             return $item->first()->goodReceiptItem->goodReceipt->partner->name.' - '.$item->first()->goodReceiptItem->product->name.' - '.$item->first()->goodReceiptItem->goodReceipt->sample.' - '.localFormatDate($item->first()->goodReceiptItem->goodReceipt->receipt_date).' - ( '.$item->sum('quantity').' Colly / '.$item->sum('weight').' Kg ) - ( Sisa '.$sisaTimbang.' Kg)';

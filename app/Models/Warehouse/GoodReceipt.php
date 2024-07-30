@@ -123,7 +123,7 @@ class GoodReceipt extends Model
      **/
     public function partner()
     {
-        return $this->belongsTo(\App\Models\Base\Partner::class, 'partner_id');
+        return $this->belongsTo(\App\Models\Base\Partner::class, 'partner_id')->withTrashed();
     }
 
     /**
