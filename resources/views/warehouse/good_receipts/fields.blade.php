@@ -158,7 +158,7 @@
             let _weight = _parent.find('#weight').val()
             let _sample = _parent.find('#is_sampling:checked').length ? 1 : 0
             
-            if (_product == '' || _quantity == '' || _quantity == 0 || _weight == ''){
+            if (_product == '' || _product == null || _quantity == '' || _quantity == 0 || _weight == ''){
                 main.alertDialog('Peringatan', 'Data harus diisi semua');
                 return
             }            

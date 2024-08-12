@@ -71,8 +71,28 @@ class GoodReceiptRepository extends BaseRepository
         } catch (Exception $e) {
             $connection->rollBack();
             throw new Exception($e->getMessage());
-        }
+        }        
+    }
 
-        
+    /**
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return null|bool|mixed
+     */
+    public function delete($id)
+    {
+        $query = $this->model->newQuery();
+
+        $model = $query->findOrFail($id);
+        $items = $model->goodReceiptItems;
+        $items->each(function ($item) {
+            $item->goodReceiptItemClassifications()->delete();
+            $item->goodReceiptItemWeights()->delete();
+        });
+        $model->goodReceiptItems()->delete();
+
+        return $model->delete();
     }
 }
