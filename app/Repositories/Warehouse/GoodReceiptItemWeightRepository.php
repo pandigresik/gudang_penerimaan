@@ -66,9 +66,11 @@ class GoodReceiptItemWeightRepository extends BaseRepository
     public function pluckSample($search = [], $skip = null, $limit = null, $key = null, $value = null)
     {        
         $query = $this->allQuery($search, $skip, $limit);
+        $query->groupBy('good_receipt_item_id');
+        $query->selectRaw('good_receipt_item_id, max(id) as id, sum(weight) as weight, sum(quantity) as quantity');        
         $query->where(['is_sampling' => true, 'state' => 'classification'])->with(['goodReceiptItem' => static fn($p) => $p->with(['goodReceiptItemSampleClassifications', 'product', 'goodReceipt' => static fn($q) => $q->with(['partner'])])]);
         return $query->get()->filter(static fn($q) => $q->goodReceiptItem->goodReceipt )->mapWithKeys(function($item){            
-            $sudahTimbang = $item->goodReceiptItem->goodReceiptItemSampleClassifications->where('reference', $item->id)->sum('weight');            
+            $sudahTimbang = $item->goodReceiptItem->goodReceiptItemSampleClassifications->where('reference', $item->id)->sum('weight');
             $sisaTimbang = $item->weight - $sudahTimbang;
             return [$item->id => $item->goodReceiptItem->goodReceipt->partner->name.' - '.$item->goodReceiptItem->product->name.' - '.$item->goodReceiptItem->goodReceipt->sample.' - '.localFormatDate($item->goodReceiptItem->goodReceipt->receipt_date).' - ( '.$item->quantity.' Colly / '.$item->weight.' Kg ) - ( Sisa '.$sisaTimbang.' Kg)'];
         })->toArray();

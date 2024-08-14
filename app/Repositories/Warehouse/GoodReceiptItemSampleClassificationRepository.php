@@ -35,9 +35,10 @@ class GoodReceiptItemSampleClassificationRepository extends GoodReceiptItemClass
             $this->saveItems($input);
             $totalWeightItem = GoodReceiptItemClassification::where(['good_receipt_item_id' => $goodReceiptItemWeightObj->good_receipt_item_id, 'reference' => $goodReceiptItemWeightObj->id])->sum('weight');
             // update status good_receipt_item_weight menjadi done, jika total yang ditimbang = total sample
-            if ($totalWeightItem >= $goodReceiptItemWeightObj->weight){
-                $goodReceiptItemWeightObj->update(['state' => 'done']);
-            }            
+            $goodReceiptItemWeightSample = GoodReceiptItemWeight::where(['good_receipt_item_id' => $goodReceiptItemWeightObj->good_receipt_item_id, 'is_sampling' => true])->sum('weight');
+            if ($totalWeightItem >= $goodReceiptItemWeightSample){
+                GoodReceiptItemWeight::where(['good_receipt_item_id' => $goodReceiptItemWeightObj->good_receipt_item_id, 'is_sampling' => true])->update(['state' => 'done']);                
+            }
             // clear cache untuk good receipt
             (new GoodReceipt)->flushCache();
             (new GoodReceiptItemWeight)->flushCache();
